@@ -1,3 +1,8 @@
+const DOMSelectors = {
+  parentdiv: document.querySelector(".parent"),
+  submitButton: document.querySelector("button"),
+};
+
 function clearInput() {
   document.getElementById("prompt").value = "";
 }
@@ -8,7 +13,7 @@ function removePrompt(num) {
 }
 
 function addElement(prompt) {
-  const parent = document.getElementById("parent");
+  const parent = DOMSelectors.parentdiv;
   const child = document.createElement("div");
   child.classList.add("child");
   child.id = `p${parent.childElementCount}`;
@@ -27,3 +32,11 @@ function onClick() {
   clearInput();
   addElement(prompt);
 }
+
+function run() {
+  DOMSelectors.submitButton.addEventListener("click", function () {
+    console.log("test");
+  });
+}
+
+run();
