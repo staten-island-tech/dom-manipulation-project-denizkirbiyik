@@ -27,14 +27,15 @@ function addElement(prompt) {
   parent.appendChild(child);
 }
 
-function onClick() {
+function diddy() {
   const prompt = document.getElementById("prompt").value;
   clearInput();
   addElement(prompt);
 }
 
 function run() {
-  DOMSelectors.submitButton.addEventListener("click", function () {
+  DOMSelectors.submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
     console.log("test");
   });
 }
