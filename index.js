@@ -1,42 +1,39 @@
 const DOMSelectors = {
   parentdiv: document.querySelector(".parent"),
   submitButton: document.querySelector("button"),
+  title: document.querySelector("#title"),
+  desc: document.querySelector("#desc"),
 };
 
 function clearInput() {
-  document.getElementById("prompt").value = "";
+  DOMSelectors.title.value = "";
+  DOMSelectors.desc.value = "";
 }
 
 function removePrompt(num) {
-  const parent = document.getElementById("parent");
-  parent.removeChild(`p${num}`);
+  DOMSelectors.parentdiv.removeChild(`p${num}`);
 }
 
-function addElement(prompt) {
-  const parent = DOMSelectors.parentdiv;
-  const child = document.createElement("div");
-  child.classList.add("child");
-  child.id = `p${parent.childElementCount}`;
-  child.textContent = `${prompt} `;
-  const remove = document.createElement("BUTTON");
-  remove.textContent = "Remove";
-  remove.onclick = function () {
-    parent.removeChild(child);
-  };
-  child.append(remove);
-  parent.appendChild(child);
-}
-
-function diddy() {
-  const prompt = document.getElementById("prompt").value;
-  clearInput();
-  addElement(prompt);
+function addElement(num) {
+  DOMSelectors.parentdiv.insertAdjacentHTML(
+    "beforeend",
+    `<div class="card" id="p${num}"><h4>${DOMSelectors.title.value}</h4><p>${DOMSelectors.desc.value}</p><button id="b${num}">Delete</button></div>`
+  );
+  document
+    .querySelector(`#b${num}`)
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      console.log("test");
+    });
 }
 
 function run() {
+  let n = 0;
   DOMSelectors.submitButton.addEventListener("click", function (event) {
     event.preventDefault();
-    console.log("test");
+    addElement(n);
+    clearInput();
+    n += 1;
   });
 }
 
