@@ -30,10 +30,25 @@ function addElement(num) {
 function run() {
   let n = 0;
   DOMSelectors.submitButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    addElement(n);
-    clearInput();
-    n += 1;
+    if (!(DOMSelectors.title.value === "" || DOMSelectors.desc.value === "")) {
+      event.preventDefault();
+      addElement(n);
+      clearInput();
+      n += 1;
+    }
+  });
+  [title, desc].forEach((input) => {
+    input.addEventListener("keypress", function (event) {
+      if (
+        !(DOMSelectors.title.value === "" || DOMSelectors.desc.value === "") &
+        (event.key === "Enter")
+      ) {
+        event.preventDefault();
+        addElement(n);
+        clearInput();
+        n += 1;
+      }
+    });
   });
 }
 
