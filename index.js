@@ -23,7 +23,7 @@ function addElement(num) {
     .querySelector(`#b${num}`)
     .addEventListener("click", function (event) {
       event.preventDefault();
-      console.log("test");
+      document.querySelector(`#p${num}`).remove();
     });
 }
 
