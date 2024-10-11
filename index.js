@@ -17,7 +17,7 @@ function removePrompt(num) {
 function addElement(num) {
   DOMSelectors.parentdiv.insertAdjacentHTML(
     "beforeend",
-    `<div class="card" id="p${num}"><h4>${DOMSelectors.title.value}</h4><p>${DOMSelectors.desc.value}</p><button id="b${num}">Delete</button></div>`
+    `<div class="card" id="p${num}"><h4>${DOMSelectors.title.value}</h4><img src="${DOMSelectors.desc.value}"><button id="b${num}">Delete</button></div>`
   );
   document
     .querySelector(`#b${num}`)
